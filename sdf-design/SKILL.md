@@ -16,7 +16,7 @@ The user reviews the result. Do not start implementation until they approve.
 
 1. **Read the input.** Read `requirements.md` (see Output for where) and the as-is code it touches. If there is no agreed requirements document, say so and ask whether to write one first.
 2. **Find the project's design rules.** See below. Do this before proposing anything.
-3. **Show the diff from the as-is first.** Draw the module dependency graph before and after (mermaid), and list what is added, changed, and removed. The user checks the overall shape here; details come later.
+3. **Show the diff from the as-is first.** Draw the module dependency graph before and after (mermaid), and list what is added, changed, and removed. Use the same module and file names in the graph and the list, so the two can be compared at a glance. The user checks the overall shape here; details come later.
 4. **Ask only where there is a real fork.** Data model, public interface, module boundaries, UI component split. For each fork give the options, a recommended default, and the reason, so the user can answer "OK". Do not ask about things the project's rules already settle.
 5. **Trace the acceptance examples.** Map every acceptance example from the requirements (including what must **not** happen) to the module that satisfies it and the test that checks it. An example with no home means the design has a gap.
 6. **Cut the implementation into slices.** Each slice is small enough to build and verify on its own. Note ordering constraints, such as which deploy must go before a destructive migration.
@@ -45,6 +45,7 @@ Always include:
 | Acceptance trace | Each acceptance example → module and test that satisfy it |
 | Decisions | Each decision with its reason and the alternatives rejected |
 | Slices | Implementation order, with ordering constraints |
+| Open questions | Only what is still undecided. Things to confirm while implementing go in a separate list, not here |
 | Applied rules | Which project rules shaped the design; areas with none |
 
 Add by condition:
@@ -68,6 +69,7 @@ These belong elsewhere: why the feature exists and what the user experiences (re
 ## Principles
 
 - The diff from the as-is comes first; fine detail comes after the shape is agreed.
+- Stop at what the reviewer must agree on: boundaries, data, and decisions with their reasons. Leave pixel values, CSS, and component props to implementation.
 - Ask about forks, not about everything. A question the project's rules answer is not a question.
 - Write what the reviewer needs to agree. Drop sections that do not apply.
 - If a state-heavy rule is hard to confirm by reading, say so and propose a stronger check (a formal spec tool or a model check) instead of silently trusting prose.

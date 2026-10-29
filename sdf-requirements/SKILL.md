@@ -1,0 +1,65 @@
+---
+name: sdf-requirements
+description: >-
+  Co-write a requirements document with the user: dig into the why behind a request, check the as-is system,
+  and agree on the experience, scope, and acceptance examples before any design starts.
+  Use when the user brings a feature request, says "let's define requirements", or before designing a new feature.
+---
+
+# Requirements
+
+Agree on **what the user can do and why**, not how it is built. Design comes after, in a separate step.
+
+The user reviews the result. Do not start design until they approve.
+
+## Flow
+
+1. **Read the as-is first.** Look at the code, screens, and data that the request touches. Questions get concrete once you know what exists. If the request is already covered, say so and ask whether to change or extend it.
+2. **Dig into the why.** Ask what problem the request solves and for whom. Surface the need behind the ask. Ask one cluster of questions at a time, and propose a default for each so the user can answer "OK".
+3. **Draft the document** (below), choosing artifacts by the conditions in the table.
+4. **Review with the user.** Fix the draft from their feedback. Record each decision with its reason.
+5. **Save and hand off.** Once approved, save the document (see Output). Design can then start in a fresh session by reading it.
+
+## Document
+
+Always include:
+
+| Section | Content |
+| --- | --- |
+| Why | The problem and the underlying need, in a few lines |
+| Goal | What the system must achieve, stated against the as-is |
+| Out of scope | What we will not do, so nobody asks "why isn't X there?" later |
+| Experience | What the user can do after this change (use case diagram or short list) |
+| Acceptance examples | Concrete "when X, then Y" cases, including what must **not** happen |
+| Decisions and open questions | Each decision with its reason; what is still undecided |
+
+Add by condition:
+
+| Condition | Artifact |
+| --- | --- |
+| The feature has state | State transition diagram |
+| It talks to an external system | Data flow diagram per use case |
+| It has a UI | UI sketch plus display rules (below) |
+
+### UI sketch and display rules
+
+- **Sketch** is for agreeing on the experience with something concrete. Build it as a throwaway prototype (an Artifact works well). Do not fix layout or fine detail here.
+- **Display rules** say it in words: under which condition each element is shown, what each action does, and what each input validates. The sketch shows; the rules state exactly.
+
+## Output
+
+Save to `docs/specs/<feature>/requirements.md`. If the project's CLAUDE.md names another location for sdf documents, use that instead. Design later adds `design.md` in the same folder, so the folder is the hand-off between sessions.
+
+Start the file with the date and a status (`draft`, `agreed`, `implemented`). After implementation the code is the source of truth for the current behavior; this file stays as the record of what was agreed and why.
+
+Keep the agreed UI sketch reachable: save its HTML next to the document (`sketch/`) and link the published Artifact URL from the document. The saved HTML lets anyone reopen or republish it; the link is the quick way to look.
+
+## Not here
+
+These belong to design, not requirements: DB schema, API interface, module structure, the diff from the as-is, final UI components.
+
+## Principles
+
+- Write what is needed for the reader to review and agree. Drop sections that do not apply.
+- Requirements cover sufficiency of the experience, not a proof that every line is necessary.
+- If a state-heavy rule is hard to confirm by reading, say so and propose a stronger check (a formal spec tool or a model check) instead of silently trusting prose.

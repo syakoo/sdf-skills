@@ -1,0 +1,73 @@
+---
+name: sdf-design
+description: >-
+  Co-write a design document with the user: agree on what changes against the as-is system, the module
+  boundaries, the data shape, and how each acceptance example is satisfied, before any code is written.
+  Use after a requirements document is agreed, or when the user says "let's design this".
+---
+
+# Design
+
+Agree on **where the current system changes and how**, so that implementation has no surprises. Requirements said what and why; design says how.
+
+The user reviews the result. Do not start implementation until they approve.
+
+## Flow
+
+1. **Read the input.** Read `requirements.md` (see Output for where) and the as-is code it touches. If there is no agreed requirements document, say so and ask whether to write one first.
+2. **Find the project's design rules.** See below. Do this before proposing anything.
+3. **Show the diff from the as-is first.** Draw the module dependency graph before and after (mermaid), and list what is added, changed, and removed. The user checks the overall shape here; details come later.
+4. **Ask only where there is a real fork.** Data model, public interface, module boundaries, UI component split. For each fork give the options, a recommended default, and the reason, so the user can answer "OK". Do not ask about things the project's rules already settle.
+5. **Trace the acceptance examples.** Map every acceptance example from the requirements (including what must **not** happen) to the module that satisfies it and the test that checks it. An example with no home means the design has a gap.
+6. **Cut the implementation into slices.** Each slice is small enough to build and verify on its own. Note ordering constraints, such as which deploy must go before a destructive migration.
+7. **Review and save.** Fix the draft from the user's feedback, record each decision with its reason, then save (see Output).
+
+## Find the project's design rules
+
+Projects differ in how they want things built. Do not assume; look.
+
+- **Where:** the project's `CLAUDE.md`, its rules directory (such as `.claude/rules/`), and the list of available skills.
+- **What for:** file and layer placement, how public interfaces and errors are shaped, where input is validated, test policy, database and migration handling, UI structure.
+- **How:** from skill descriptions, pick only the ones relevant to this design and read those. Do not read everything.
+- **If nothing applies:** follow the conventions of the existing code. If they do not decide the question, ask the user.
+- **If a project rule conflicts with this skill's flow, the project wins.**
+
+List what you applied in the document, and the areas where no rule was found.
+
+## Document
+
+Always include:
+
+| Section | Content |
+| --- | --- |
+| Approach | The chosen design in a few lines |
+| Diff from as-is | Added, changed, removed, plus the dependency graph before and after |
+| Acceptance trace | Each acceptance example → module and test that satisfy it |
+| Decisions | Each decision with its reason and the alternatives rejected |
+| Slices | Implementation order, with ordering constraints |
+| Applied rules | Which project rules shaped the design; areas with none |
+
+Add by condition:
+
+| Condition | Artifact |
+| --- | --- |
+| It touches the database | Schema diff and migration order |
+| It adds or changes a boundary | Interface of the new or changed boundary: inputs, outputs, errors, preconditions |
+| It has a UI | Component split, and which display rule from the requirements each one carries |
+
+## Output
+
+Save to `docs/specs/<feature>/design.md`, next to `requirements.md`. If the project's CLAUDE.md names another location for sdf documents, use that instead.
+
+Start the file with the date and a status (`draft`, `agreed`, `implemented`). After implementation the code is the source of truth for the current behavior; this file stays as the record of what was agreed and why.
+
+## Not here
+
+These belong elsewhere: why the feature exists and what the user experiences (requirements), the code itself (implementation).
+
+## Principles
+
+- The diff from the as-is comes first; fine detail comes after the shape is agreed.
+- Ask about forks, not about everything. A question the project's rules answer is not a question.
+- Write what the reviewer needs to agree. Drop sections that do not apply.
+- If a state-heavy rule is hard to confirm by reading, say so and propose a stronger check (a formal spec tool or a model check) instead of silently trusting prose.

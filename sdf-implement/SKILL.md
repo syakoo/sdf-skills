@@ -47,13 +47,34 @@ Judge by what the reviewer agreed: boundaries, data shape, decisions, and accept
 
 Run it in a subagent with a fresh context. A reviewer who did not write the code sees what its author does not. This is required, and it also keeps the diff out of your own context.
 
-Give it the requirements, the design, and the diff against the base branch. Ask it to check:
+The review has two parts. Both are reported together, with the same levels.
 
-- **Against the design:** the diff stays within the design's diff from the as-is, with no change outside it; boundaries have the designed shape.
-- **Against the requirements:** every acceptance example, including what must **not** happen, has its test and passes. Run the project's checks to confirm.
-- **General:** leftover debug code, TODO or FIXME, types, unused imports, tests that do not match the behavior. If the project has its own review rules or skill, use it for this part.
+**Part 1: against the requirements and the design.** Always do this; no project procedure knows about it.
 
-The reviewer reports each finding as must-fix, needs-clarification, or OK. Fix must-fix items, ask the user about needs-clarification items, then run the review again.
+- The diff stays within the design's diff from the as-is, with no change outside it, and boundaries have the designed shape.
+- Every acceptance example, including what must **not** happen, has its test and passes. Run the project's checks to confirm.
+
+**Part 2: general review of the diff.** If the project has its own review procedure (rules, or a skill for reviewing changes before a pull request), follow it, including its aspects and levels. Only when it has none, use the default below.
+
+Default aspects, each grounded in the diff and limited to touched lines and their immediate context:
+
+- Leftover debug or temporary code, including commented-out code
+- New TODO, FIXME, or suppressions (lint or type-check disables, broad escape-hatch types) without a stated reason
+- Types and imports: unused imports, constructs the types or control flow already make redundant
+- Structure in the diff: magic values, a block that grew unusually long, swallowed errors
+- Tests: behavior or public interface changes without added or updated tests; summary of the project's checks that were run
+
+Out of scope for the default: refactors, design debates, and what the formatter or linter already catches (one line saying so is enough).
+
+**Levels.** Report each finding as one of:
+
+- **Must fix** — fix before the pull request
+- **Needs clarification** — a point for the user to decide
+- **OK** — nothing found; say what was checked
+
+**How to run it.** Pass the reviewer only the requirements, the design, the scope as a command (the diff against the base branch), the aspects above or the project's procedure, and the output format. Do not pass your intent or the conversation. If the user stated a fact the reviewer cannot learn from the repo, pass that one fact. The reviewer reads and runs checks but does not edit, and returns only the report: scope, checks run, then the findings by level with `path:line` and a one-line summary, empty levels omitted.
+
+Fix must-fix items, ask the user about needs-clarification items, then run the review again. If subagents are unavailable, do the review yourself and say so in the report.
 
 ## Not here
 

@@ -20,7 +20,7 @@ The user reviews and merges the pull request. Do not merge.
 4. **Run each slice: build, verify, commit.** One slice is one commit. Put the slice's number or name in the commit message so the log shows progress. Run the project's checks before each commit.
 5. **When the design does not hold, follow the table below.**
 6. **Review in a fresh context** (below), fix what it finds, and review again until it is clean.
-7. **Open the pull request.** The description links the requirements and the design, lists every deviation from the design, and states the result for each acceptance example. Update the design's status to `implemented` once the user merges, or in the same pull request if the project's flow allows.
+7. **Mark the documents, then open the pull request.** Just before opening it, set the status of `design.md` and `requirements.md` to `implemented` and commit that, so the change merges with the code. Updating after the merge would need another pull request. The description links the requirements and the design, lists every deviation from the design, and states the result for each acceptance example. If the user asks for changes in review, the status stays as it is.
 
 ## Keeping the context small
 

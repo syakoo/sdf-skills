@@ -30,7 +30,7 @@ Always include:
 | Goal | What the system must achieve, stated against the as-is |
 | Out of scope | What we will not do, so nobody asks "why isn't X there?" later |
 | Experience | What the user can do after this change (use case diagram or short list) |
-| Acceptance examples | Concrete "when X, then Y" cases, including what must **not** happen |
+| Acceptance examples | Concrete cases, including what must **not** happen, written as in "Acceptance examples" below |
 | Decisions and open questions | Each decision with its reason; what is still undecided |
 
 Add by condition:
@@ -40,6 +40,19 @@ Add by condition:
 | The feature has state | State transition diagram |
 | It talks to an external system | Data flow diagram per use case |
 | It has a UI | UI sketch plus display rules (below) |
+
+### Acceptance examples
+
+Write each example as one sentence that shows three things: the **trigger** (when), the **state or condition** it applies in (while, if), and the **result** (then). Plain sentences are fine; no fixed phrasing is required. One example should be checkable by one test.
+
+If the project already has a format for requirements or acceptance criteria (such as EARS or Given/When/Then), look for it in the project's `CLAUDE.md` and existing requirements documents, and use it instead.
+
+After writing them, ask of each example:
+
+- **While it lasts:** what happens as time passes, when the data is fetched again, or when the state changes under it?
+- **At the edges:** what happens when the input is shorter, longer, or outside the range; spans the edge of the range; is empty; fails; or is still loading?
+
+Add an example for each answer the user cares about. An answer nobody decided is an open question, not something to leave to the design.
 
 ### UI sketch and display rules
 

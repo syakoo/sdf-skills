@@ -1,5 +1,6 @@
 ---
 name: sdf-implement
+license: MIT
 description: >-
   Implement an agreed design slice by slice, commit per slice, review the result in a fresh context against
   the requirements and the design, then open a pull request. Use after a design document is agreed, or when

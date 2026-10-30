@@ -1,5 +1,6 @@
 ---
 name: sdf-requirements
+license: MIT
 description: >-
   Co-write a requirements document with the user: dig into the why behind a request, check the as-is system,
   and agree on the experience, scope, and acceptance examples before any design starts.

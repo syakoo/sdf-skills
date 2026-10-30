@@ -1,5 +1,6 @@
 ---
 name: sdf-design
+license: MIT
 description: >-
   Co-write a design document with the user: agree on what changes against the as-is system, the module
   boundaries, the data shape, and how each acceptance example is satisfied, before any code is written.

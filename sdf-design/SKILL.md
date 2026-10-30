@@ -18,7 +18,7 @@ The user reviews the result. Do not start implementation until they approve.
 2. **Find the project's design rules.** See below. Do this before proposing anything.
 3. **Show the diff from the as-is first.** Draw the module dependency graph before and after (mermaid), and list what is added, changed, and removed. Use the same module and file names in the graph and the list, so the two can be compared at a glance. The user checks the overall shape here; details come later.
 4. **Ask only where there is a real fork.** Data model, public interface, module boundaries, UI component split. For each fork give the options, a recommended default, and the reason, so the user can answer "OK". Do not ask about things the project's rules already settle.
-5. **Trace the acceptance examples.** Map every acceptance example from the requirements (including what must **not** happen) to the module that satisfies it and the test that checks it. An example with no home means the design has a gap.
+5. **Trace the acceptance examples.** Map every acceptance example and every quality from the requirements (including what must **not** happen) to the module that satisfies it and the test that checks it. An example with no home means the design has a gap.
 6. **Cut the implementation into slices.** Each slice is small enough to build and verify on its own. Note ordering constraints, such as which deploy must go before a destructive migration.
 7. **Review and save.** Fix the draft from the user's feedback, record each decision with its reason, then save (see Output).
 
@@ -42,7 +42,7 @@ Always include:
 | --- | --- |
 | Approach | The chosen design in a few lines |
 | Diff from as-is | Added, changed, removed, plus the dependency graph before and after |
-| Acceptance trace | Each acceptance example → module and test that satisfy it |
+| Acceptance trace | Each acceptance example and quality → module and test or check that satisfy it |
 | Decisions | Each decision with its reason and the alternatives rejected |
 | Slices | Implementation order, with ordering constraints |
 | Open questions | Only what is still undecided. Things to confirm while implementing go in a separate list, not here |

@@ -69,7 +69,7 @@ If the project sets quality standards (a performance budget, an accessibility po
 
 ## Output
 
-Save to `docs/specs/<feature>/requirements.md`. If the project's CLAUDE.md names another location for sdf documents, use that instead. Design later adds `design.md` in the same folder, so the folder is the hand-off between sessions.
+Save to `docs/specs/<YYYYMMDD>-<feature>/requirements.md`. If the project's CLAUDE.md names another location for sdf documents, use that instead. The folder name starts with the date the work began (today, when you create it), so each piece of work gets its own folder: for a change that resembles an earlier one, start a new folder instead of editing the old one. Design later adds `design.md` in the same folder, so the folder is the hand-off between sessions.
 
 Start the file with the date and a status (`draft`, `agreed`, `implemented`). After implementation the code is the source of truth for the current behavior; this file stays as the record of what was agreed and why.
 

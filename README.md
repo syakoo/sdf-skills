@@ -16,8 +16,8 @@ Each step produces a short document or a change that you review before the next 
 
 | Skill | Use it when | Produces |
 | --- | --- | --- |
-| `sdf-requirements` | You have a feature request. Digs into the why, checks the as-is, and agrees on the experience, scope, and acceptance examples | `docs/specs/<feature>/requirements.md` |
-| `sdf-design` | Requirements are agreed. Agrees on the diff from the as-is, module boundaries, data shape, and how each acceptance example is satisfied | `docs/specs/<feature>/design.md` |
+| `sdf-requirements` | You have a feature request. Digs into the why, checks the as-is, and agrees on the experience, scope, and acceptance examples | `docs/specs/<YYYYMMDD>-<feature>/requirements.md` |
+| `sdf-design` | Requirements are agreed. Agrees on the diff from the as-is, module boundaries, data shape, and how each acceptance example is satisfied | `docs/specs/<YYYYMMDD>-<feature>/design.md` |
 | `sdf-implement` | The design is agreed. Builds slice by slice (one commit each), reviews in a fresh context against the requirements and design, and opens a pull request | Commits and a pull request |
 
 Run them in separate sessions if you like. The documents are the hand-off, and progress during implementation is readable from git.
@@ -38,7 +38,7 @@ flowchart TD
   E --> F["Review with you, record each decision with its reason"]
   F --> G{"Approved?"}
   G -- no --> E
-  G -- yes --> H["Save docs/specs/feature/requirements.md"]
+  G -- yes --> H["Save docs/specs/YYYYMMDD-feature/requirements.md"]
 ```
 
 The document always has Why, Goal, Out of scope, Experience, Acceptance examples (including what must not happen), and Decisions. It adds a state transition diagram for stateful features, a data flow diagram per use case for external systems, and a throwaway UI sketch plus display rules for UI.
@@ -57,7 +57,7 @@ flowchart TD
   F -- yes --> D
   F -- no --> G["Cut implementation into slices"]
   G --> H["Review with you, record decisions and rejected alternatives"]
-  H --> I["Save docs/specs/feature/design.md"]
+  H --> I["Save docs/specs/YYYYMMDD-feature/design.md"]
 ```
 
 Project rules (structure, interfaces, tests, migrations, UI) are found in `CLAUDE.md`, the rules directory, and the available skills. The project's rules win, and the design lists which ones it applied.
@@ -108,7 +108,7 @@ Or copy (or symlink) the skill directories into your project's `.claude/skills/`
 
 ## Output location
 
-Documents go to `docs/specs/<feature>/` by default. If your project's `CLAUDE.md` names another location for sdf documents, the skills use that.
+Documents go to `docs/specs/<YYYYMMDD>-<feature>/` by default. If your project's `CLAUDE.md` names another location for sdf documents, the skills use that.
 
 ## Status
 

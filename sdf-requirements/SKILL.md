@@ -15,7 +15,7 @@ The user reviews the result. Do not start design until they approve.
 ## Flow
 
 1. **Read the as-is first.** Look at the code, screens, and data that the request touches. Questions get concrete once you know what exists. If the request is already covered, say so and ask whether to change or extend it.
-2. **Dig into the why.** Ask what problem the request solves and for whom. Surface the need behind the ask. Ask one cluster of questions at a time, and propose a default for each so the user can answer "OK".
+2. **Dig into the why.** Ask what problem the request solves and for whom. Surface the need behind the ask. Ask one cluster of questions at a time, and propose a default for each so the user can answer "OK". If the need turns out to be met better, or more cheaply, by something other than the solution the user first named, say so and propose one or two alternatives next to the original, each with its trade-off. The user chooses; record the choice and the reason under Decisions.
 3. **Draft the document** (below), choosing artifacts by the conditions in the table.
 4. **Review with the user.** Fix the draft from their feedback. Record each decision with its reason.
 5. **Save and hand off.** Once approved, save the document (see Output). Design can then start in a fresh session by reading it.

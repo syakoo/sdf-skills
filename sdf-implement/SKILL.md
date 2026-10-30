@@ -41,7 +41,7 @@ Judge by what the reviewer agreed: boundaries, data shape, decisions, and accept
 
 - Keep finished slices. Redo from the slice that broke.
 - Record every change to the design at its end under "Changes during implementation": date, what differed, what changed.
-- Never drift silently. When unsure between small and design-changing, treat it as design-changing.
+- When unsure between small and design-changing, treat it as design-changing.
 
 ## Review
 
@@ -75,13 +75,3 @@ Out of scope for the default: refactors, design debates, and what the formatter 
 **How to run it.** Pass the reviewer only the requirements, the design, the scope as a command (the diff against the base branch), the aspects above or the project's procedure, and the output format. Do not pass your intent or the conversation. If the user stated a fact the reviewer cannot learn from the repo, pass that one fact. The reviewer reads and runs checks but does not edit, and returns only the report: scope, checks run, then the findings by level with `path:line` and a one-line summary, empty levels omitted.
 
 Fix must-fix items, ask the user about needs-clarification items, then run the review again. If subagents are unavailable, do the review yourself and say so in the report.
-
-## Not here
-
-Why the feature exists (requirements) and how it is shaped (design). If you find yourself deciding those, you are in the "design changes" row above.
-
-## Principles
-
-- The design is the contract. Differences are reported, not hidden.
-- One slice, one commit, one verification.
-- A pull request the reviewer can trust says what it did, where it differed, and how each acceptance example was checked.

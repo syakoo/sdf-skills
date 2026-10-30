@@ -62,14 +62,8 @@ Save to `docs/specs/<feature>/design.md`, next to `requirements.md`. If the proj
 
 Start the file with the date and a status (`draft`, `agreed`, `implemented`). After implementation the code is the source of truth for the current behavior; this file stays as the record of what was agreed and why.
 
-## Not here
-
-These belong elsewhere: why the feature exists and what the user experiences (requirements), the code itself (implementation).
-
 ## Principles
 
-- The diff from the as-is comes first; fine detail comes after the shape is agreed.
 - Stop at what the reviewer must agree on: boundaries, data, and decisions with their reasons. Leave pixel values, CSS, and component props to implementation.
-- Ask about forks, not about everything. A question the project's rules answer is not a question.
-- Write what the reviewer needs to agree. Drop sections that do not apply.
+- Drop sections that do not apply.
 - If a state-heavy rule is hard to confirm by reading, say so and propose a stronger check (a formal spec tool or a model check) instead of silently trusting prose.

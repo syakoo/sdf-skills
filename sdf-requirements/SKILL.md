@@ -57,9 +57,9 @@ Add an example for each answer the user cares about. An answer nobody decided is
 
 ### Qualities
 
-Not every feature needs this. Ask the user which of these they care about for this change: speed and volume, access and privacy, failure and offline behavior, accessibility, supported environments, cost. Write only the ones they care about, each as a number or an acceptance example that one test or check can settle (for example "with 100 items the list shows within 1 second"). Vague wishes such as "fast" or "secure" are not requirements; ask for the number or drop them. Note the ones deliberately not a concern in one line under Out of scope.
+Ask which of these the user cares about for this change: speed and volume, access and privacy, failure and offline behavior, accessibility, supported environments, cost. Write only the ones they care about, each as a number or an acceptance example that one test or check can settle (for example "with 100 items the list shows within 1 second"). Ask for a number behind vague wishes like "fast", or drop them. Note the ones deliberately not a concern in one line under Out of scope.
 
-If the project's `CLAUDE.md` or existing documents set quality standards (a performance budget, an accessibility policy), use them. State the promise the user will feel, not the technique; caching, indexes, and similar means belong to design.
+If the project sets quality standards (a performance budget, an accessibility policy), use them. State the promise, not the technique; caching and indexes belong to design.
 
 ### UI sketch and display rules
 

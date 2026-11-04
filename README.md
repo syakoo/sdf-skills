@@ -41,7 +41,7 @@ flowchart TD
   G -- yes --> H["Save docs/specs/YYYYMMDD-feature/requirements.md"]
 ```
 
-The document always has Why, Goal, Out of scope, Experience, Acceptance examples (including what must not happen), and Decisions. It adds a state transition diagram for stateful features, a data flow diagram per use case for external systems, and a throwaway UI sketch plus display rules for UI.
+The document always has Why, Goal, Out of scope, Use cases, Error handling (common errors defined once, referenced from each use case), Acceptance examples (including what must not happen), and Decisions. It adds a state transition diagram for stateful features, a data flow diagram per use case for external systems, and a throwaway UI sketch plus display rules for UI.
 
 ### sdf-design
 
@@ -60,7 +60,7 @@ flowchart TD
   H --> I["Save docs/specs/YYYYMMDD-feature/design.md"]
 ```
 
-Project rules (structure, interfaces, tests, migrations, UI) are found in `CLAUDE.md`, the rules directory, and the available skills. The project's rules win, and the design lists which ones it applied.
+Use cases that cross modules or external systems get a sequence diagram, including failure paths. Project rules (structure, interfaces, tests, migrations, UI) are found in `CLAUDE.md`, the rules directory, and the available skills. The project's rules win, and the design lists which ones it applied.
 
 ### sdf-implement
 
@@ -85,7 +85,7 @@ flowchart TD
   K -- no --> M["Set documents to implemented, open the pull request"]
 ```
 
-Progress lives in git (one commit per slice), so a compact or a new session can resume from the log. The review follows the project's own procedure when there is one; otherwise it reports must fix, needs clarification, or OK.
+Orchestration of an ordered use case is marked with `// STEP: <name>` comments that match the design's sequence diagram. Progress lives in git (one commit per slice), so a compact or a new session can resume from the log. The review follows the project's own procedure when there is one; otherwise it reports must fix, needs clarification, or OK.
 
 ## Principles
 

@@ -30,7 +30,8 @@ Always include:
 | Why | The problem and the underlying need, in a few lines |
 | Goal | What the system must achieve, stated against the as-is |
 | Out of scope | What we will not do, so nobody asks "why isn't X there?" later |
-| Experience | What the user can do after this change (use case diagram or short list) |
+| Use cases | What the user can do after this change: a list with an ID, the actor, and what they get. A use case diagram is optional |
+| Error handling | What the user sees and what is not lost when something fails (below) |
 | Acceptance examples | Concrete cases, including what must **not** happen, written as in "Acceptance examples" below |
 | Decisions and open questions | Each decision with its reason; what is still undecided |
 
@@ -42,6 +43,14 @@ Add by condition:
 | It talks to an external system | Data flow diagram per use case |
 | It has a UI | UI sketch plus display rules (below) |
 | A quality matters here (speed, volume, privacy, failure, accessibility, compatibility, cost) | Qualities (below) |
+
+### Use cases and error handling
+
+- List each use case the user can experience. Give each an ID (`UC1`, `UC2`, ...) so later documents can point to it.
+- **Common error handling:** define failures that behave the same across use cases (expired sign-in, offline, server error) once, each with an ID (`E1`, ...) and what the user sees.
+- **Per use case:** list only the failures specific to it. For a common one, write `Common E1` instead of repeating it, so the reader can see it is shared.
+- State the experience, not the technique: what the user sees and what is kept or lost. Retries, logging, and where the failure is caught belong to design.
+- Each failure listed here needs an acceptance example.
 
 ### Acceptance examples
 

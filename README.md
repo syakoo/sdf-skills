@@ -16,8 +16,8 @@ Each step produces a short document or a change that you review before the next 
 
 | Skill | Use it when | Produces |
 | --- | --- | --- |
-| `sdf-requirements` | You have a feature request. Digs into the why, checks the as-is, and agrees on the experience, scope, and acceptance examples | `docs/specs/<YYYYMMDD>-<feature>/requirements.md` |
-| `sdf-design` | Requirements are agreed. Agrees on the diff from the as-is, module boundaries, data shape, and how each acceptance example is satisfied | `docs/specs/<YYYYMMDD>-<feature>/design.md` |
+| `sdf-requirements` | You have a feature request. Digs into the why, checks the as-is, and agrees on the use cases, their error handling, scope, and acceptance examples | `docs/specs/<YYYYMMDD>-<feature>/requirements.md` |
+| `sdf-design` | Requirements are agreed. Agrees on the diff from the as-is, module boundaries, data shape, a sequence diagram per cross-module use case, and how each acceptance example is satisfied | `docs/specs/<YYYYMMDD>-<feature>/design.md` |
 | `sdf-implement` | The design is agreed. Builds slice by slice (one commit each), reviews in a fresh context against the requirements and design, and opens a pull request | Commits and a pull request |
 
 Run them in separate sessions if you like. The documents are the hand-off, and progress during implementation is readable from git.
@@ -109,6 +109,10 @@ Or copy (or symlink) the skill directories into your project's `.claude/skills/`
 ## Output location
 
 Documents go to `docs/specs/<YYYYMMDD>-<feature>/` by default. If your project's `CLAUDE.md` names another location for sdf documents, the skills use that.
+
+## Versions
+
+Releases are tagged on [GitHub Releases](https://github.com/syakoo/sdf-skills/releases) (`v0.1.3` adds use cases and error handling to requirements, sequence diagrams to design, and `// STEP:` comments to implementation).
 
 ## Status
 

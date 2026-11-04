@@ -110,10 +110,6 @@ Or copy (or symlink) the skill directories into your project's `.claude/skills/`
 
 Documents go to `docs/specs/<YYYYMMDD>-<feature>/` by default. If your project's `CLAUDE.md` names another location for sdf documents, the skills use that.
 
-## Versions
-
-Releases are tagged on [GitHub Releases](https://github.com/syakoo/sdf-skills/releases) (`v0.1.3` adds use cases and error handling to requirements, sequence diagrams to design, and `// STEP:` comments to implementation).
-
 ## Status
 
 Experimental. Tried end to end on one personal project so far.

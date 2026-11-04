@@ -110,10 +110,6 @@ Or copy (or symlink) the skill directories into your project's `.claude/skills/`
 
 Documents go to `docs/specs/<YYYYMMDD>-<feature>/` by default. If your project's `CLAUDE.md` names another location for sdf documents, the skills use that.
 
-## Versions
-
-Releases are published on [GitHub Releases](https://github.com/syakoo/sdf-skills/releases); there is no version file. Every PR to `main` carries exactly one `semver:major` / `semver:minor` / `semver:patch` label (checked by `.github/workflows/semver-label.yml`). Merging it publishes the next release (`.github/workflows/release-on-merge.yml`).
-
 ## Status
 
 Experimental. Tried end to end on one personal project so far.

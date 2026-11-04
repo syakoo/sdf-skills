@@ -1,0 +1,75 @@
+name: Release on merge
+
+# After a PR merges to main, compute the next version from the latest GitHub
+# Release and the PR's semver:* label, then publish a new Release (the tag is
+# created with it). The repo has no version file; releases are the source of truth.
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+concurrency:
+  group: release-${{ github.repository }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  release:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+          TARGET: ${{ github.event.pull_request.merge_commit_sha }}
+        run: |
+          set -euo pipefail
+          IFS=',' read -r -a label_arr <<< "$LABELS"
+          has() {
+            local label
+            for label in "${label_arr[@]}"; do
+              [[ "$label" == "$1" ]] && return 0
+            done
+            return 1
+          }
+          if has semver:major; then level=major
+          elif has semver:minor; then level=minor
+          elif has semver:patch; then level=patch
+          else
+            echo "::error::Merged without a semver:* label. No release was published; create it manually."
+            exit 1
+          fi
+
+          old="$(gh api "repos/${REPO}/releases/latest" --jq .tag_name)"
+          IFS='.' read -r major minor patch <<< "${old#v}"
+          case "$level" in
+            major) major=$((major + 1)); minor=0; patch=0 ;;
+            minor) minor=$((minor + 1)); patch=0 ;;
+            patch) patch=$((patch + 1)) ;;
+          esac
+          new="v${major}.${minor}.${patch}"
+          echo "Release ${old} -> ${new} (${level})"
+
+          if gh release view "$new" --repo "$REPO" >/dev/null 2>&1; then
+            echo "Release ${new} already exists; aborting to avoid overwrite."
+            exit 1
+          fi
+
+          notes="$(gh api "repos/${REPO}/releases/generate-notes" \
+            -f tag_name="$new" \
+            -f previous_tag_name="$old" \
+            -f target_commitish="$TARGET" \
+            --jq .body)"
+
+          gh release create "$new" \
+            --repo "$REPO" \
+            --target "$TARGET" \
+            --title "$new" \
+            --notes "$notes"

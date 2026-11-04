@@ -112,7 +112,7 @@ Documents go to `docs/specs/<YYYYMMDD>-<feature>/` by default. If your project's
 
 ## Versions
 
-Releases are tagged on [GitHub Releases](https://github.com/syakoo/sdf-skills/releases) (`v0.1.3` adds use cases and error handling to requirements, sequence diagrams to design, and `// STEP:` comments to implementation).
+Releases are published on [GitHub Releases](https://github.com/syakoo/sdf-skills/releases); there is no version file. Every PR to `main` carries exactly one `semver:major` / `semver:minor` / `semver:patch` label (checked by `.github/workflows/semver-label.yml`). Merging it publishes the next release (`.github/workflows/release-on-merge.yml`).
 
 ## Status
 

@@ -1,0 +1,32 @@
+name: Semver label
+
+# Every PR to main must carry exactly one semver:* label; merging it releases.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+    branches: [main]
+
+jobs:
+  semver-label:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require exactly one semver:* label
+        env:
+          LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+        run: |
+          set -euo pipefail
+          IFS=',' read -r -a label_arr <<< "$LABELS"
+          count=0
+          for label in "${label_arr[@]}"; do
+            case "$label" in
+              semver:major|semver:minor|semver:patch) count=$((count + 1)) ;;
+            esac
+          done
+          if [[ "$count" -eq 1 ]]; then
+            echo "OK: semver label present."
+            exit 0
+          fi
+          echo "::error::Add exactly one of: semver:major, semver:minor, semver:patch (got ${count})."
+          exit 1

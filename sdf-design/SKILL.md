@@ -55,7 +55,16 @@ Add by condition:
 | --- | --- |
 | It touches the database | Schema diff and migration order |
 | It adds or changes a boundary | Interface of the new or changed boundary: inputs, outputs, errors, preconditions |
+| A use case involves two or more modules or an external system | Sequence diagram per use case (below) |
 | It has a UI | Component split, and which display rule from the requirements each one carries |
+
+### Sequence diagram per use case
+
+Draw one for each use case that crosses modules or talks to an external system; skip single-module ones. Use the use case ID from the requirements as the title.
+
+- Show the failure paths too (`alt` / `opt`), and which module handles each common error from the requirements. Common errors are handled in one place, not per use case.
+- Name each message after the step it performs. Implementation reuses these names (see `sdf-implement`).
+- In the Acceptance trace, point each use case to its diagram.
 
 ## Output
 

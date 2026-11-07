@@ -68,7 +68,7 @@ Draw one for each use case that crosses modules or talks to an external system; 
 
 ## Output
 
-Save to `docs/specs/<YYYYMMDD>-<feature>/design.md`, next to `requirements.md`. If the project's CLAUDE.md names another location for sdf documents, use that instead.
+Save to `docs/changes/<YYYYMMDD>-<feature>/design.md`, next to `requirements.md`. If the project's CLAUDE.md names another location for sdf documents, use that instead.
 
 Start the file with the date and a status (`draft`, `agreed`, `implemented`). After implementation the code is the source of truth for the current behavior; this file stays as the record of what was agreed and why.
 

@@ -41,7 +41,7 @@ flowchart TD
   G -- yes --> H["Save docs/changes/YYYYMMDD-feature/requirements.md"]
 ```
 
-The document always has Why, Goal, Out of scope, Use cases, Error handling (common errors defined once, referenced from each use case), Acceptance examples (including what must not happen), and Decisions. It adds a state transition diagram for stateful features, a data flow diagram per use case for external systems, and a throwaway UI sketch plus display rules for UI.
+The document always has Why, Goal, Out of scope, Use cases, Error handling (common errors defined once, referenced from each use case), Acceptance examples (including what must not happen), and Decisions. It adds a state transition diagram for stateful features, a data flow diagram per use case for external systems, and, for any UI change beyond an obvious style tweak, a throwaway UI sketch on an Artifact plus display rules.
 
 ### sdf-design
 
@@ -60,7 +60,7 @@ flowchart TD
   H --> I["Save docs/changes/YYYYMMDD-feature/design.md"]
 ```
 
-Use cases that cross modules or external systems get a sequence diagram, including failure paths. Project rules (structure, interfaces, tests, migrations, UI) are found in `CLAUDE.md`, the rules directory, and the available skills. The project's rules win, and the design lists which ones it applied.
+The dependency graphs mark the diff by node border: red for removed modules on the as-is graph, green for added and yellow for changed modules on the to-be graph. Use cases that cross modules or external systems get a sequence diagram, including failure paths. A UI change beyond an obvious style tweak is shown on an Artifact with the component split. Project rules (structure, interfaces, tests, migrations, UI) are found in `CLAUDE.md`, the rules directory, and the available skills. The project's rules win, and the design lists which ones it applied.
 
 ### sdf-implement
 

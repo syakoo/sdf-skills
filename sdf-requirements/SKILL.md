@@ -41,7 +41,7 @@ Add by condition:
 | --- | --- |
 | The feature has state | State transition diagram |
 | It talks to an external system | Data flow diagram per use case |
-| It has a UI | UI sketch plus display rules (below) |
+| It changes the UI, beyond an obvious style tweak | UI sketch on an Artifact, plus display rules (below) |
 | A quality matters here (speed, volume, privacy, failure, accessibility, compatibility, cost) | Qualities (below) |
 
 ### Use cases and error handling
@@ -73,7 +73,7 @@ If the project sets quality standards (a performance budget, an accessibility po
 
 ### UI sketch and display rules
 
-- **Sketch** is for agreeing on the experience with something concrete. Build it as a throwaway prototype (an Artifact works well). Do not fix layout or fine detail here.
+- **Sketch** is for agreeing on the experience with something concrete. Build it as a throwaway prototype on an Artifact, so the user can open and try it. Do not fix layout or fine detail here. Skip it only for an obvious style tweak (a color, a spacing, a font size). If Artifacts are unavailable, say so and use a static HTML file or an image instead.
 - **Display rules** say it in words: under which condition each element is shown, what each action does, and what each input validates. The sketch shows; the rules state exactly.
 
 ## Output

@@ -38,22 +38,28 @@ List what you applied in the document, and the areas where no rule was found.
 
 ## Who reviews
 
-By default the AI reviews the design alone. Review it in a fresh context (a subagent where available), so it does not share the draft's assumptions, and check:
+By default the AI reviews the design alone. Review it in a fresh context (a subagent where available), so it does not share the draft's assumptions. Write the result as a table, one row per item, with a verdict and the reason for it. A verdict without a reason does not count.
 
-- Every acceptance example and quality from the requirements is traced, and nothing in the design lacks a requirement.
-- The graph, the lists, the sequence diagrams, and the data and interface definitions agree on names and shapes.
-- The diff from the as-is matches the actual code.
-- Failure paths and the common errors from the requirements are covered.
-- The project's design rules found in step 2 are followed, and any deviation is recorded as a decision with its reason.
+| Item | Verdict | Reason |
+| --- | --- | --- |
+| Every acceptance example and quality from the requirements is traced, and nothing in the design lacks a requirement | OK / Fixed / Open | What was checked, or what was found and how it was fixed |
+| The graph, the lists, the sequence diagrams, and the data and interface definitions agree on names and shapes | OK / Fixed / Open | same |
+| The diff from the as-is matches the actual code | OK / Fixed / Open | same |
+| Failure paths and the common errors from the requirements are covered | OK / Fixed / Open | same |
+| The project's design rules found in step 2 are followed; a deviation is recorded as a decision with its reason | OK / Fixed / Open | same |
 
-Fix what it finds before going on. Ask the user to review, and wait for their approval, when the design:
+Fix what it finds before going on. Anything still `Open` is also listed in Open questions.
 
-- adds or changes a public interface or a contract with an external system;
-- changes the database schema (changing an existing table or column; only adding new ones does not count);
-- touches a trust boundary: authentication, authorization, billing, or the handling of secrets and personal data;
-- still has an open question the review could not settle.
+Then decide whether the user must review, with the same kind of table. Ask the user, and wait for their approval, when any row says **Yes**.
 
-State which condition applies, and show the user the decisions rather than the whole document. If none applies, the design can be marked `agreed` without waiting for the user.
+| Condition | Applies | Reason |
+| --- | --- | --- |
+| Adds or changes a public interface or a contract with an external system | Yes / No | Which interface or system, or why none is touched |
+| Changes the database schema (changing an existing table or column; only adding new ones does not count) | Yes / No | which tables or columns, or why none is changed |
+| Touches a trust boundary: authentication, authorization, billing, or the handling of secrets and personal data | Yes / No | which boundary, or why none is touched |
+| Still has an open question the review could not settle | Yes / No | which question, or that none is left |
+
+When the user must review, show them the decisions and these two tables rather than the whole document. If every row says No, the design can be marked `agreed` without waiting for the user.
 
 ## Document
 
@@ -68,7 +74,7 @@ Always include:
 | Slices | Implementation order, with ordering constraints |
 | Open questions | Only what is still undecided. Things to confirm while implementing go in a separate list, not here |
 | Applied rules | Which project rules shaped the design; areas with none |
-| Review | `AI only`, or `Human` with the condition that required it |
+| Review | Both tables from "Who reviews", and `AI only` or `Human` as the outcome |
 
 Add by condition:
 

@@ -64,7 +64,7 @@ flowchart TD
   H --> I["Save docs/changes/YYYYMMDD-feature/design.md"]
 ```
 
-By default the AI reviews the design alone. You review it only when it adds or changes a public interface or an external contract, changes an existing database table or column, touches a trust boundary (authentication, authorization, billing, secrets, personal data), or leaves an open question the AI review could not settle. The document records which review it got.
+By default the AI reviews the design alone. You review it only when it adds or changes a public interface or an external contract, changes an existing database table or column, touches a trust boundary (authentication, authorization, billing, secrets, personal data), or leaves an open question the AI review could not settle. The document records the review as two tables (each check and each escalation condition, with a verdict and its reason).
 
 The dependency graphs mark the diff by node border: red for removed modules on the as-is graph, green for added and yellow for changed modules on the to-be graph. Use cases that cross modules or external systems get a sequence diagram, including failure paths. A UI change beyond an obvious style tweak is shown on an Artifact with the component split. Project rules (structure, interfaces, tests, migrations, UI) are found in `CLAUDE.md`, the rules directory, and the available skills. The project's rules win, and the design lists which ones it applied.
 

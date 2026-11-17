@@ -5,9 +5,10 @@ Structured Development Flow (sdf): agent skills for working through a feature wi
 ```
 request → requirements → design → implement → pull request
               ▲             ▲          ▲             ▲
-           you review    you review  review in     you review
-                                     a fresh       and merge
-                                     context
+           you review    AI reviews  review in     you review
+                         (you, when  a fresh       and merge
+                         it touches  context
+                         a boundary)
 ```
 
 Each step produces a short document or a change that you review before the next step starts. The agent digs into the *why* with you, shows what changes against the current system, and proves the result against what you agreed.
@@ -56,9 +57,14 @@ flowchart TD
   E --> F{"Any example without a home?"}
   F -- yes --> D
   F -- no --> G["Cut implementation into slices"]
-  G --> H["Review with you, record decisions and rejected alternatives"]
+  G --> R["AI review in a fresh context: traces, consistency, as-is, failure paths, project rules"]
+  R --> Q{"External contract, schema change, or trust boundary?"}
+  Q -- yes --> H["Review with you, record decisions and rejected alternatives"]
+  Q -- no --> I
   H --> I["Save docs/changes/YYYYMMDD-feature/design.md"]
 ```
+
+By default the AI reviews the design alone. You review it only when it adds or changes a public interface or an external contract, changes an existing database table or column, touches a trust boundary (authentication, authorization, billing, secrets, personal data), or leaves an open question the AI review could not settle. The document records which review it got.
 
 The dependency graphs mark the diff by node border: red for removed modules on the as-is graph, green for added and yellow for changed modules on the to-be graph. Use cases that cross modules or external systems get a sequence diagram, including failure paths. A UI change beyond an obvious style tweak is shown on an Artifact with the component split. Project rules (structure, interfaces, tests, migrations, UI) are found in `CLAUDE.md`, the rules directory, and the available skills. The project's rules win, and the design lists which ones it applied.
 
